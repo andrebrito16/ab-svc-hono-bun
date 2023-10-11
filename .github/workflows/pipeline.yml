@@ -23,7 +23,7 @@ on:
 jobs:
 
  SVC:
-    uses:  andrebrito16/iac-github-actions/.github/workflows/svc.yml@fix/push-go-image
+    uses:  andrebrito16/iac-github-actions/.github/workflows/svc.yml@main
     secrets: inherit
     with:
       mainBranch: main 
