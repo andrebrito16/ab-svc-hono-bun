@@ -22,10 +22,11 @@ on:
         
 jobs:
 
-  SVC:
+ SVC:
     uses:  andrebrito16/iac-github-actions/.github/workflows/svc.yml@fix/push-go-image
     secrets: inherit
     with:
-      mainBranch: main
+      mainBranch: main 
       platforms: linux/amd64
       environmentsAsNamespaces: true
+      nodeMatrix: '[18]'
