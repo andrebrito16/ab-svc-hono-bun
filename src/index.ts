@@ -6,7 +6,7 @@ app.get('/', (c) => c.text('Hello Hono!'))
 
 app.get('health', (c) => c.json({
   status: 'ok',
-  message: 'Hono is healty',
+  message: 'Hono is healthy',
   environment: process.env.NODE_ENV,
 }))
 
