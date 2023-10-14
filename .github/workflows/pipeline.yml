@@ -23,7 +23,7 @@ on:
 jobs:
 
  SVC:
-    uses:  andrebrito16/iac-github-actions/.github/workflows/svc.yml@main
+    uses:  andrebrito16/iac-github-actions/.github/workflows/svc.yml@run-arc
     secrets: inherit
     with:
       mainBranch: main 
