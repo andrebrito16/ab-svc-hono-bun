@@ -1,6 +1,6 @@
 name: pipeline
 
-on: 
+on:
   push:
   deployment:
   release:
@@ -11,22 +11,21 @@ on:
   workflow_dispatch:
     inputs:
       environment:
-        description: 'Environment'
+        description: "Environment"
         required: true
         type: choice
-        default: 'dev'
+        default: "dev"
         options:
-        - dev
-        - stg
-        - prod
-        
-jobs:
+          - dev
+          - stg
+          - prod
 
- SVC:
-    uses:  andrebrito16/iac-github-actions/.github/workflows/svc.yml@run-arc
+jobs:
+  SVC:
+    uses: andrebrito16/iac-github-actions/.github/workflows/svc.yml@main
     secrets: inherit
     with:
-      mainBranch: main 
+      mainBranch: main
       platforms: linux/amd64
       environmentsAsNamespaces: true
-      nodeMatrix: '[18]'
+      nodeMatrix: "[18]"
