@@ -10,8 +10,12 @@ env:
 
 ingress:
   enable: true
-  className: nginx
+  className: traefik
   domain: andreb.dev
+
+  letsencrypt:
+    enable: true
+    email: felipe.brito016@gmail.com
 
 deployment:
   replicas: 1
