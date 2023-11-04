@@ -1,13 +1,32 @@
-import { Hono } from 'hono'
+import { drizzle } from "drizzle-orm/postgres-js";
+import { migrate } from "drizzle-orm/postgres-js/migrator";
+import { Hono } from "hono";
+import { logs } from "./db/schema/logs";
+import { db, migrationClient } from "./infra/database";
 
-const app = new Hono()
+const app = new Hono();
 
-app.get('/', (c) => c.text('Hello Hono!'))
+async function main() {
+  await migrate(drizzle(migrationClient), {
+    migrationsFolder: "drizzle",
+    migrationsTable: "drizzle_migrations",
+  });
 
-app.get('health', (c) => c.json({
-  status: 'ok',
-  message: 'Hono is healthy',
-  environment: process.env.NODE_ENV,
-}))
+  app.get("/", async (c) => {
+    const allLogs = await db.select().from(logs)
 
-export default app
+    return c.json({
+      allLogs
+    })
+  });
+
+  app.get("health", (c) =>
+    c.json({
+      status: "ok",
+      message: "Hono is healthy",
+      environment: process.env.NODE_ENV,
+    })
+  );
+}
+main();
+export default app;
